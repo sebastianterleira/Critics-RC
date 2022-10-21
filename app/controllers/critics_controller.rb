@@ -1,58 +1,74 @@
 class CriticsController < ApplicationController
-  before_action :set_critic, only: %i[ show edit update destroy ]
-
   # GET /critics
   def index
     @critics = Critic.all
   end
 
-  # GET /critics/1
+  # GET /critics/:id
   def show
+    @critic = Critic.find(params[:id])
   end
 
-  # GET /critics/new
+  # GET /critics/new || /critics/new?game_id=:id || /critics/new?company_id=:id
+  # GET /games/:game_id/critics/new
+  # GET /company/:company_id/critics/new
   def new
-    @critic = Critic.new
+    criticable = Game.find(params[:game_id]) if params[:game_id]
+    criticable = Company.find(params[:company_id]) if params[:company_id]
+
+    if criticable # <Game /> || <Compny />
+      @critic = criticable.critics.new # <#Critics />
+      # render "new"
+    else
+      render "criticable"
+    end
   end
 
-  # GET /critics/1/edit
+  # GET /critics/:id/edit
   def edit
+    @critic = Critic.find(params[:id])
   end
 
   # POST /critics
+  # POST /games/:game_id/critics
+  # POST /company/:company_id/critics
   def create
-    @critic = Critic.new(critic_params)
+    criticable = Game.find(params[:game_id]) if params[:game_id]
+    criticable = Company.find(params[:company_id]) if params[:company_id]
+
+    @critic = criticable.critics.new(critic_params)
+
+    @critic.user = current_user
 
     if @critic.save
-      redirect_to @critic, notice: "Critic was successfully created."
+      redirect_to @critic
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /critics/1
+  # PATCH/PUT /critics/:id
   def update
+    @critic = Critic.find(params[:id])
+
     if @critic.update(critic_params)
-      redirect_to @critic, notice: "Critic was successfully updated."
+      redirect_to @critic
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /critics/1
+  # DELETE /critics/:id
   def destroy
+    @critic = Critic.find(params[:id])
     @critic.destroy
-    redirect_to critics_url, notice: "Critic was successfully destroyed."
+    redirect_to critics_path, status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_critic
-      @critic = Critic.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def critic_params
-      params.require(:critic).permit(:title, :body, :criticable_id, :criticable_type)
-    end
+  # Only allow a list of trusted parameters through.
+  def critic_params
+    params.require(:critic).permit(:title, :body)
+  end
 end

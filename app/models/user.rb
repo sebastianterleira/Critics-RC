@@ -11,5 +11,8 @@ class User < ApplicationRecord
 
   # Association
   has_many :critics, dependent: :destroy
-  has_secure_password
+#   has_secure_password
+enum role: { admin: 0,
+    basic: 1 }
+
 end

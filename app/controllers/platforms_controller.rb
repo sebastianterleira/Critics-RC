@@ -1,13 +1,12 @@
 class PlatformsController < ApplicationController
-  before_action :set_platform, only: %i[ show edit update destroy ]
-
   # GET /platforms
   def index
     @platforms = Platform.all
   end
 
-  # GET /platforms/1
+  # GET /platforms/:id
   def show
+    @platform = Platform.find(params[:id])
   end
 
   # GET /platforms/new
@@ -15,8 +14,9 @@ class PlatformsController < ApplicationController
     @platform = Platform.new
   end
 
-  # GET /platforms/1/edit
+  # GET /platforms/:id/edit
   def edit
+    @platform = Platform.find(params[:id])
   end
 
   # POST /platforms
@@ -24,35 +24,34 @@ class PlatformsController < ApplicationController
     @platform = Platform.new(platform_params)
 
     if @platform.save
-      redirect_to @platform, notice: "Platform was successfully created."
+      redirect_to @platform
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /platforms/1
+  # PATCH/PUT /platforms/:id
   def update
+    @platform = Platform.find(params[:id])
+
     if @platform.update(platform_params)
-      redirect_to @platform, notice: "Platform was successfully updated."
+      redirect_to @platform
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /platforms/1
+  # DELETE /platforms/:id
   def destroy
+    @platform = Platform.find(params[:id])
     @platform.destroy
-    redirect_to platforms_url, notice: "Platform was successfully destroyed."
+    redirect_to platforms_url, status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_platform
-      @platform = Platform.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def platform_params
-      params.require(:platform).permit(:name, :category)
-    end
+  # Only allow a list of trusted parameters through.
+  def platform_params
+    params.require(:platform).permit(:name, :category)
+  end
 end
