@@ -18,6 +18,10 @@ Platform.destroy_all
 Genre.destroy_all
 Game.destroy_all
 
+puts "Seeding Companies"
+
+Sony = Company.create(name: "Sony", description: "")
+
 User.new(username: "user_test", email: "user@mail.com", role: 1)
 
 puts "Seeding companies"
