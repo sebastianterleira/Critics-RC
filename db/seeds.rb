@@ -96,4 +96,8 @@ expansions_games_data.each do |game|
                                               )
     puts "Involved Company not created. Errors: #{new_involved_company.errors.full_messages}" unless new_involved_company.save
   end
+
+  Company.all.each.with_index do |company,i|
+    company.cover.attach(io: File.open("db/images/comp#{i+1}.png"), filename: "comp#{i+1}.png")
+  end
 end
