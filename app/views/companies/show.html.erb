@@ -3,8 +3,9 @@
 <%= render @company %>
 
 <div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back to companies", companies_path %>
+  <%= link_to "Edit company", edit_company_path(@company) %> |
+  
+  <%= link_to "Back", companies_path %>
 
-  <%= button_to "Destroy this company", @company, method: :delete %>
+  <%= button_to "Destroy", @company, method: :delete %>
 </div>
