@@ -15,6 +15,18 @@ Rails.application.routes.draw do
     post "add_platform", on: :member
     # /games/:id/remove_platform
     delete "remove_platform", on: :member
+
+    # /games/:id/add_developer
+    post "add_developer", on: :member
+
+    # /games/:id/remove_developer
+    delete "remove_developer", on: :member
+
+    # /games/:id/add_publisher
+    post "add_publisher", on: :member
+
+    # /games/:id/remove_publisher
+    delete "remove_publisher", on: :member
   end
   resources :platforms
   resources :genres
