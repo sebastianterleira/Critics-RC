@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "games#index"
 
   resources :critics
@@ -33,14 +34,16 @@ Rails.application.routes.draw do
   resources :companies do
     resources :critics
   end
-  resources :users, only: :new
+  # resources :users, only: :new
 
-  get "/login", to: "sessions#new"
-  post "/sessions", to: "sessions#create"
-  delete "/sessions", to: "sessions#destroy"
+  # get "/login", to: "sessions#new"
+  # post "/sessions", to: "sessions#create"
+  # delete "/sessions", to: "sessions#destroy"
 
-  get "/profile", to: "users#edit"
-  patch "/profile", to: "users#update"
-  post "/profile", to: "users#create"
+  # user_url
+  get "/profile", to: "users#show", as: "user"
+  # get "/profile", to: "users#edit"
+  # patch "/profile", to: "users#update"
+  # post "/profile", to: "users#create"
   
 end
