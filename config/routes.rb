@@ -22,7 +22,29 @@ Rails.application.routes.draw do
   #   resources :feedbacks, only: :create
   # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+    # /games/:id/add_genre
+    post "add_genre", on: :member
+    # /games/:id/remove_genre
+    delete "remove_genre", on: :member
 
-  # Defines the root path route ("/")
-  root "games#index"
+    # /games/:id/add_platform
+    post "add_platform", on: :member
+    # /games/:id/remove_platform
+    delete "remove_platform", on: :member
+  end
+  resources :platforms
+  resources :genres
+  resources :companies do
+    resources :critics
+  end
+  resources :users, only: :new
+
+  get "/login", to: "sessions#new"
+  post "/sessions", to: "sessions#create"
+  delete "/sessions", to: "sessions#destroy"
+
+  get "/profile", to: "users#edit"
+  patch "/profile", to: "users#update"
+  post "/profile", to: "users#create"
+  
 end
