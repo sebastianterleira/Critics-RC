@@ -33,15 +33,18 @@ class CriticsController < ApplicationController
   # POST /games/:game_id/critics
   # POST /company/:company_id/critics
   def create
-    criticable = Game.find(params[:game_id]) if params[:game_id]
-    criticable = Company.find(params[:company_id]) if params[:company_id]
+    if params[:game_id]
+      criticable = Game.find(params[:game_id])
+    elsif params[:company_id]
+      criticable = Company.find(params[:company_id])
+    end
 
-    @critic = criticable.critics.new(critic_params)
-
-    @critic.user = current_user
+    @critic = Critic.new(critic_params)
+    @critic.criticable = criticable
+    # @critic.user = current_employee
 
     if @critic.save
-      redirect_to @critic
+      redirect_to @critic.criticable, notice: "Critic was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -69,6 +72,6 @@ class CriticsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def critic_params
-    params.require(:critic).permit(:title, :body)
+    params.require(:critic).permit(:title, :body, :user_id)
   end
 end
