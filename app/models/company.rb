@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+    # Attached
+    has_one_attached :cover
     validates :name, presence: true, uniqueness: true
 
     # Associations

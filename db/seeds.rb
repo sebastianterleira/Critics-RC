@@ -18,9 +18,8 @@ Platform.destroy_all
 Genre.destroy_all
 Game.destroy_all
 
-puts "Seeding Companies"
+puts "Seeding Games"
 
-Sony = Company.create(name: "Sony", description: "")
 
 User.new(username: "user_test", email: "user@mail.com", role: 1)
 
@@ -92,10 +91,10 @@ expansions_games_data.each do |game|
 
   game["involved_companies"].each do |involved_company_data|
     company = Company.find_by(name: involved_company_data["name"])
-
+    
     new_involved_company = InvolvedCompany.new( game: new_game,
-                                                company: company,
-                                                publisher: involved_company_data["publisher"], 
+      company: company,
+      publisher: involved_company_data["publisher"], 
                                                 developer: involved_company_data["developer"]
                                               )
     puts "Involved Company not created. Errors: #{new_involved_company.errors.full_messages}" unless new_involved_company.save
@@ -103,5 +102,12 @@ expansions_games_data.each do |game|
 
   Company.all.each.with_index do |company,i|
     company.cover.attach(io: File.open("db/images/comp#{i+1}.png"), filename: "comp#{i+1}.png")
+  end
+end
+
+Game.all.each_with_index do |games,i|
+  games.cover.attach(io: File.open("db/images/img#{i+1}.png"), filename: "img#{i+1}.png")
+  unless games.cover.attached?
+    puts "No sale"
   end
 end
