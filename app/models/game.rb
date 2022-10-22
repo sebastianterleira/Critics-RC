@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+    # Attached
+    has_one_attached :cover
     # Validations
     validates :name, :category, presence: true
     validates :name, uniqueness: true

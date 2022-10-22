@@ -96,3 +96,8 @@
 .p-0 {
   padding: 0;
 }
+
+.img-fit {
+  width:100%;
+  object-fit: cover;
+}
