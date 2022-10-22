@@ -1,17 +1,21 @@
 <div id="<%= dom_id company %>">
+  <%# <% if company.cover.attached? %> 
+    <%# <div> %>
+      <%# <%= image_tag company.cover, alt: "Image to #{company.name}" %> 
+    <%# </div> %>
+  <%# <% else %> 
+  <%# <div> %>
+    <%# <%= image_tag "empty.png", alt: "Empty image", class: "img-company" %> 
+  <%# </div> %>
+  <%# <% end %>
+
   <p>
     <strong>Name:</strong>
     <%= company.name %>
   </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= company.description %>
-  </p>
-
   <p>
     <strong>Start date:</strong>
-    <%= company.start_date %>
+    <%= company.start_date.year %>
   </p>
 
   <p>
@@ -19,4 +23,28 @@
     <%= company.country %>
   </p>
 
+  <%= link_to "Company Details", company_path(@company) %>
+  <%= link_to "Critics", "#"%>  
+  
+
+  <p>
+    <strong>Description:</strong>
+    <%= company.description %>
+  </p>
 </div>
+
+<br/>
+  <h3>Games</h3>
+
+  <% company.games.each do |game| %>
+    <%= render "games/game", game: game %><br/>
+  <% end %>
+
+ <hr>
+  <h3>Critics por mientras</h3>
+  <%= render "critics/form", critic: Critic.new, criticable: @company%>
+
+
+  <% @company.received_critics.each do |critic| %>
+    <%= render "critics/critic", critic: critic %>
+  <% end %>
