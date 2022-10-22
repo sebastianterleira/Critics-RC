@@ -19,9 +19,7 @@ Genre.destroy_all
 Game.destroy_all
 
 puts "Seeding Games"
-
-
-User.new(username: "user_test", email: "user@mail.com", role: 1)
+User.create(username: "user_test", email: "user@mail.com", role: 1)
 
 puts "Seeding companies"
 companies_data.each do |company_data|

@@ -55,11 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_163441) do
   create_table "critics", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.bigint "user_id", null: false
     t.string "criticable_type", null: false
     t.bigint "criticable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["criticable_type", "criticable_id"], name: "index_critics_on_criticable"
+    t.index ["user_id"], name: "index_critics_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -119,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_163441) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "critics", "users"
   add_foreign_key "games", "games", column: "parent_id"
   add_foreign_key "involved_companies", "companies"
   add_foreign_key "involved_companies", "games"

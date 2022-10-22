@@ -1,17 +1,8 @@
 <div id="<%= dom_id critic %>">
-  <p>
-    <strong>Title:</strong>
-    <%= critic.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= critic.body %>
-  </p>
-
-  <p>
-    <strong>Criticable:</strong>
-    <%= critic.criticable_id %>
-  </p>
-
+  <p>By <%= critic.user.username%></p>
+  <p><%= critic.title%></p>
+  <p><%= critic.body %></p>
+  <p><%= time_ago_in_words(critic.created_at) %></p>
+  <%= button_to "Destroy", critic, method: :delete %>
 </div>
+

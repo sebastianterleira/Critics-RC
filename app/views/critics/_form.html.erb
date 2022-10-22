@@ -1,4 +1,4 @@
-<%= form_with(model: critic) do |form| %>
+<%= form_with(model: [criticable, critic]) do |form| %>
   <% if critic.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(critic.errors.count, "error") %> prohibited this critic from being saved:</h2>
@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :criticable_id, style: "display: block" %>
-    <%= form.text_field :criticable_id %>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
   </div>
 
   <div>
