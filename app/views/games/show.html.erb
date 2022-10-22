@@ -44,10 +44,10 @@
           <li><%= platform.name%> | <%= link_to 'remove', remove_platform_game_path(@game, platform_id: platform.id), data: { turbo_method: :delete }  %></li>
           <% end %>
         </ul>
-        <strong>Developers:</strong>
-        <% @game.involved_companies.each do |developer| %>
-          <%= developer.name %> 
-          <% end %>
+        <%# <strong>Developers:</strong> %>
+        <%# <% @game.involved_companies.each do |developer| %> 
+          <%# <%= developer.name %>  
+          <%# <% end %> 
       </div>
         <strong>Add relations:</strong>
       <div>
@@ -79,6 +79,15 @@
         <%= link_to 'Back', games_path %>
       </div>
     </div>
+  </div>
+</div>
+<div class="container">
+ <%= render "critics/form", critic: Critic.new, criticable: @game%>
+
+
+  <% @game.received_critics.each do |critic| %>
+    <%= render "critics/critic", critic: critic %>
+  <% end %>
   </div>
 </section>
 
