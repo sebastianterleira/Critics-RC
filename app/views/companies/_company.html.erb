@@ -1,31 +1,33 @@
 <div id="<%= dom_id company %>">
-  <%# <% if company.cover.attached? %> 
-    <%# <div> %>
-      <%# <%= image_tag company.cover, alt: "Image to #{company.name}" %> 
-    <%# </div> %>
-  <%# <% else %> 
-  <%# <div> %>
-    <%# <%= image_tag "empty.png", alt: "Empty image", class: "img-company" %> 
-  <%# </div> %>
-  <%# <% end %>
+  <% if company.cover.attached? %> 
+    <div>
+      <%= image_tag company.cover, alt: "Image to #{company.name}" %> 
+    </div>
+  <% else %> 
+    <div>
+    <%= image_tag "empty.png", alt: "Empty image", class: "img-company" %> 
+    </div>
+  <% end%>
 
   <p>
-    <strong>Name:</strong>
+    <strong>
     <%= company.name %>
+    </strong>
   </p>
   <p>
-    <strong>Start date:</strong>
-    <%= company.start_date.year %>
+    <%= company.start_date.year %> - <%= company.country %>
   </p>
 
+<<<<<<< Updated upstream
   <p>
     <strong>Country:</strong>
     <%= company.country %>
   </p>
 
+=======
+>>>>>>> Stashed changes
   <%= link_to "Company Details", company_path(@company) %>
-  <%= link_to "Critics", "#"%>  
-  
+  <%= link_to "Critics #{company.received_critics.size}" , "#"%>  
 
   <p>
     <strong>Description:</strong>
@@ -34,14 +36,22 @@
 </div>
 
 <br/>
-  <h3>Games</h3>
+  <h3>Games <%=company.games.count%> </h3>
 
   <% company.games.each do |game| %>
+  <% if game.cover.attached? %> 
+    <div>
+      <%= image_tag game.cover, alt: "Image to #{game.name}" %> 
+    </div>
+  <% else %> 
+    <div>
+    <%= image_tag "empty.png", alt: "Empty image", class: "img-game" %> 
+    </div>
+  <% end%>
     <%= render "games/game", game: game %><br/>
   <% end %>
 
  <hr>
-  <h3>Critics por mientras</h3>
   <%= render "critics/form", critic: Critic.new, criticable: @company%>
 
 
