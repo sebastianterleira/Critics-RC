@@ -12,36 +12,50 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, style: "display: block"%>
+    <%= form.text_field :name, placeholder: "Magic Game"%>
+    <%=errors_for(game, :name)%>
   </div>
 
   <div>
     <%= form.label :summary, style: "display: block" %>
-    <%= form.text_area :summary %>
+    <%= form.text_area :summary, placeholder: "About game SA..." %>
+    <%=errors_for(game, :summary)%>
   </div>
 
   <div>
     <%= form.label :release_date, style: "display: block" %>
-    <%= form.date_field :release_date %>
-  </div>
-
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.number_field :category %>
+    <%= form.text_field :release_date %>
+    <%=errors_for(game, :release_date)%>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.text_field :rating %>
+    <%= form.number_field :rating, step: 0.1 %>
+    <%=errors_for(game, :rating)%>
   </div>
 
   <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category, Game.categories.keys, { prompt: true } %>
+    <%=errors_for(game, :category) %>
+  </div>
+
+
+  <div>
     <%= form.label :parent_id, style: "display: block" %>
-    <%= form.text_field :parent_id %>
+    <%= form.collection_select :parent_id, Game.main_game, :id, :name, { include_blank: "Please select" } %>
+    <%=errors_for(game, :parent_id)%>
+  </div>
+
+  <div>
+  <%= form.label :cover%> </div>
+  <%= form.file_field :cover%>
+  <%= image_tag(game.cover) if game.cover.attached?%>
   </div>
 
   <div>
     <%= form.submit %>
+    <%= link_to "Back", games_path%>
   </div>
 <% end %>

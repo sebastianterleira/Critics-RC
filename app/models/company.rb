@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+    # Attached
+    has_one_attached :cover
     validates :name, presence: true, uniqueness: true
 
     # Associations
@@ -7,5 +9,4 @@ class Company < ApplicationRecord
     has_many :received_critics, class_name: "Critic", 
     as: :criticable, 
     dependent: :destroy
-
 end
