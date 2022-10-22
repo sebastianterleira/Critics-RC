@@ -17,12 +17,12 @@
     <div><%= company.description %></div>
     <p><%= company.games.count %> Games </p>
 
-    <%= link_to "Show", company %>
-    <%= link_to "Edit", company %>
-    <%= link_to "destroy", company, data: {
+    <p><%= link_to "Show", company %></p>
+    <p><%= link_to "Edit", edit_company_path(company) %></p>
+    <p><%= link_to "destroy", company, data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
-       } %>
+       } %></p>
   
   <% end %>
 </div>

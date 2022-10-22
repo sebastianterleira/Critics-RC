@@ -2,33 +2,36 @@
   <div class="container">
     <h1 class="heading">Game details</h1>
     <div class="flex flex-column gap-4 content-lg">
+    <% if @game.cover.attached? %> 
       <div>
-        <strong>Name:</strong>
+      <%= image_tag @game.cover, alt: "Image to #{@game.name}" %> 
+      </div>
+      <% else %> 
+      <div>
+     <%= image_tag "empty.png", alt: "Empty image", class: "img-game" %> 
+     </div>
+    <% end%>
+      <div>
         <%= @game.name %>
       </div>
 
       <div>
-        <strong>Summary:</strong>
         <%= @game.summary %>
       </div>
 
       <div>
-        <strong>Release date:</strong>
-        <%= @game.release_date %>
+        <%= @game.release_date.year %>
       </div>
 
       <div>
-        <strong>Rating:</strong>
         <%= @game.rating %>
       </div>
 
       <div>
-        <strong>Category:</strong>
         <%= @game.category %>
       </div>
 
       <div>
-        <strong>Parent:</strong>
         <%= @game.parent&.name  %>
       </div>
 
