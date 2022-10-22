@@ -10,7 +10,22 @@
       <% if game.cover.attached? %>
       <%= image_tag game.cover%>
       <% end %>
-    <%= render game %>
+      <p>
+      <%= game.name %>
+      </p>
+      <p>
+      <%= game.summary %>
+      </p>
+      <p>
+      <%= game.release_date %>
+      </p>
+      <p>
+      <%= game.category %>
+      </p>
+      <p>
+      <%= game.rating %>
+      </p>
+      <p>
       <%= link_to "Show", game %>
     </p>
     <p>
@@ -18,6 +33,9 @@
     </p>
     <p>
     <%= link_to 'Destroy', game, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </p>
+    <p>
+    <%= game.critics.size%> Critics
     </p>
   <% end %>
 </div>
