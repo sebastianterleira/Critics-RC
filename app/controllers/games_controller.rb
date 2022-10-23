@@ -96,6 +96,12 @@ class GamesController < ApplicationController
    redirect_to game, status: :see_other
  end
 
+  def add_developer
+    game = Game.find(params[:id])
+    InvolvedCompany.create(game_id: params[:game_id], company_id: params[:company_id], developer: true, publisher: false)
+    redirect_to game
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

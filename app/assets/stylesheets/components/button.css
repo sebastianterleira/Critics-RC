@@ -1,7 +1,6 @@
 .button {
   border: none;
   border-radius: 0.25em;
-  font-family: var(--font-primary);
   font-size: 1rem;
   line-height: 1.25em;
   font-weight: 500;
@@ -23,7 +22,7 @@
 
 /* Button Primary */
 .button--primary {
-  background-color: var(--primary-300);
+  background-color: var(--gray-500);
   color: white;
 }
 
@@ -117,4 +116,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.back_btn{
+  text-decoration: none;
+  background-color: #F2F2F2;
+  color: #303036;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1em;
+  line-height: 1em;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0.75em 1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
 }

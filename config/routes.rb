@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :involved_companies
   resources :games do
     resources :critics
-
+    post "/add_developer_game", to: "games#add_developer"
     # /games/:id/add_genre
     post "add_genre", on: :member
     # /games/:id/remove_genre
@@ -47,8 +47,8 @@ Rails.application.routes.draw do
   # patch "/profile", to: "users#update"
   # post "/profile", to: "users#create"
 
-
   # Omniauth
   # post '/auth/github', to: 'github_login'
   # get 'auth/github/callback', to: 'sessions#create'
+
 end

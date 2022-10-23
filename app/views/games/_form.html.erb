@@ -48,14 +48,12 @@
     <%=errors_for(game, :parent_id)%>
   </div>
 
-  <div>
-  <%= form.label :cover%> </div>
-  <%= form.file_field :cover%>
-  <%= image_tag(game.cover) if game.cover.attached?%>
-  </div>
+  <div><%= form.label :cover%> </div>
+  <div><%= form.file_field :cover%></div>
+  <div><%= image_tag(game.cover) if game.cover.attached?%></div>
 
-  <div>
-    <%= form.submit %>
-    <%= link_to "Back", games_path%>
-  </div>
+  <div><%= form.submit %></div>
+    
+   <div> <%= link_to "Back", games_path%></div>
+  
 <% end %>

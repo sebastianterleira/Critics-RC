@@ -1,9 +1,10 @@
 <section class="section">
-  <div class="container">
+  <section class="container">
+    <h1 class="heading">Game details</h1>
     <div class="flex flex-column gap-4 content-lg">
     <% if @game.cover.attached? %> 
       <div>
-      <%= image_tag @game.cover, alt: "Image to #{@game.name}" %> 
+      <%= image_tag @game.cover, alt: "Image to #{@game.name}"%> 
       </div>
       <% else %> 
       <div>
@@ -74,11 +75,32 @@
               <%= form.submit "Add platform", class: "button button--primary fit-content" %>
             <% end %>
           </li>
-          </ul>
+        </ul>
+      </div>
+
+      <div>
+
+      <strong>Developers:</strong>
+
+       <%= form_with(url: game_add_developer_game_path(@game),class: "flex flex-column gap-4 flex-row") do |form|%>
+          <div class="flex gap-4">
+            <div class="select"> 
+          <%= form.collection_select :company_id, Company.all, :id, :name , { prompt: true }, { class: "select__input" }%>
+            </div>
+          </div>
+          <%= form.submit "Add developer",class: "button button--primary fit-content"%>
+      <% end %>
+      </div>
+
+
+      <div>
         <%= link_to 'Edit', edit_game_path(@game) %> |
         <%= link_to 'Back', games_path %>
       </div>
     </div>
+
+<section class="section">
+<section class="container">
   </div>
 </div>
 <div class="container">
@@ -90,5 +112,7 @@
   <% end %>
   </div>
 </section>
+</section>
+
 
 

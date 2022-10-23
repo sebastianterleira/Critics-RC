@@ -1,42 +1,36 @@
+<section class="section">
+  <section class="container">
+
 <p style="color: green"><%= notice %></p>
 
-<h1>Games</h1>
-<%= link_to "New game", new_game_path %>
+<h1 class="heading">Games</h1>
+<%= link_to "New game", new_game_path, class: " button button--primary fit-content mg-1" %>
 
-<div id="games">
+<%# <div id="games"> %>
        
-    <p>
+
   <% @games.each do |game| %>
+  <section class="card py-3">
+    <div class="card_image">
       <% if game.cover.attached? %>
-      <%= image_tag game.cover%>
+      <div class=img-about><%= image_tag game.cover%></div>
       <% end %>
-      <p>
-      <%= game.name %>
-      </p>
-      <p>
-      <%= game.summary %>
-      </p>
-      <p>
-      <%= game.release_date %>
-      </p>
-      <p>
-      <%= game.category %>
-      </p>
-      <p>
-      <%= game.rating %>
-      </p>
-      <p>
-      <%= link_to "Show", game %>
-    </p>
-    <p>
-    <%= link_to 'Edit', edit_game_path(game) %>
-    </p>
-    <p>
-    <%= link_to 'Destroy', game, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-    </p>
-    <p>
-    <%= game.received_critics.size%> Critics
-    </p>
+      </div>
+      <p><%= link_to game.name, game %></p>
+      <p><%= game.summary %></p>
+      <p><%= game.release_date %></p>
+      <p><%= game.category %></p>
+      <p><%= game.rating %></p>
+      <p><%= game.received_critics.size%> Critics</p>
+    <div class="card_icon">
+      <%= link_to image_tag('Edit.png',:alt => 'edit'), edit_game_path(game) %>
+      <%= link_to image_tag('Delet.png',:alt => 'destroy'), game, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </div>
+
+  </section> 
   <% end %>
-</div>
+ 
+
+</section>
+</section>
 

@@ -17,7 +17,7 @@
         <img
           src="/images/logo.png"
           alt="Critics"
-          height="32"
+          height="40"
         />
       </a>
       <nav>
@@ -58,5 +58,49 @@
   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
     <%= yield %>
+
+    <footer class="footer">
+      <div class="footer__content">
+        <p>Build with ♥ by</p> 
+      
+        <div class="footer__students">
+          <a href="https://www.linkedin.com">
+            <div class="footer__students-tag">
+            <span class="ml-4 fill-current h-4 w-4 text-red-400">
+              <%= image_tag("/images/linkedIn-logo.png") %>
+            </span>
+            <span class="secondary-500">Sebastian Terleira</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com">
+            <div class="footer__students-tag">
+              <span class="ml-4 fill-current h-4 w-4 text-red-400">
+                <%= image_tag('/images/linkedIn-logo.png') %>
+              </span>
+              <span class="secondary-500">Olenka Sanchez</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com">
+            <div class="footer__students-tag">
+            <span class="ml-4 fill-current h-4 w-4 text-red-400">
+              <%= image_tag("/images/linkedIn-logo.png") %>
+            </span>
+            <span class="secondary-500">Tita Ruiz</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com">
+            <div class="footer__students-tag">
+            <span class="ml-4 fill-current h-4 w-4 text-red-400">
+              <%= image_tag("/images/linkedIn-logo.png") %>
+            </span>
+            <span class="secondary-500">Elias Mesones</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
