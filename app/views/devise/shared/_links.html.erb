@@ -20,6 +20,12 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
+    <%# <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %>
+    <div data-turbo="false">
+    <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |form|%>
+    <%=form.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}"%>
+    <%end%>
+    </div>
+    <br />
   <% end %>
 <% end %>

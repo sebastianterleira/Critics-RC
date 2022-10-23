@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: :callbacks }
   root "games#index"
 
   resources :critics
@@ -45,5 +46,9 @@ Rails.application.routes.draw do
   # get "/profile", to: "users#edit"
   # patch "/profile", to: "users#update"
   # post "/profile", to: "users#create"
-  
+
+
+  # Omniauth
+  # post '/auth/github', to: 'github_login'
+  # get 'auth/github/callback', to: 'sessions#create'
 end
