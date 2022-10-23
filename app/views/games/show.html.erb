@@ -1,10 +1,10 @@
 <section class="section">
-  <div class="container">
+  <section class="container">
     <h1 class="heading">Game details</h1>
     <div class="flex flex-column gap-4 content-lg">
     <% if @game.cover.attached? %> 
       <div>
-      <%= image_tag @game.cover, alt: "Image to #{@game.name}" %> 
+      <%= image_tag @game.cover, alt: "Image to #{@game.name}"%> 
       </div>
       <% else %> 
       <div>
@@ -93,7 +93,6 @@
         <%= link_to 'Back', games_path %>
       </div>
     </div>
-  </div>
-</section>
-
+<section class="section">
+<section class="container">
 

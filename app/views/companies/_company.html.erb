@@ -1,3 +1,6 @@
+<section class="section">
+  <div class="container">
+
 <div id="<%= dom_id company %>">
   <% if company.cover.attached? %> 
     <div>
@@ -22,7 +25,7 @@
   <%= link_to "Critics #{company.received_critics.size}" , "#"%>  
 
   <p>
-    <strong>Description:</strong>
+    <%# <strong>Description:</strong> %>
     <%= company.description %>
   </p>
 </div>
@@ -50,3 +53,6 @@
   <% @company.received_critics.each do |critic| %>
     <%= render "critics/critic", critic: critic %>
   <% end %>
+
+  </div>
+</section>
