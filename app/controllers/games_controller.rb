@@ -78,14 +78,23 @@ class GamesController < ApplicationController
     redirect_to game
   end
 
-  # DELETE /games/:id/remove_platform
-  def remove_platform
+  # POST /games/:id/add_developer
+  def add_developer
     game = Game.find(params[:id])
-    platform = Platform.find(params[:platform_id])
-
-    game.platforms.delete(platform)
-    redirect_to game, status: :see_other
+    developer = InvolvedCompany.find(params[:company_id])
+    
+    game.developer << developer
+    redirect_to game
   end
+  
+  # DELETE /games/:id/remove_developer
+  def remove_developer
+   game = Game.find(params[:id])
+   developer = InvolvedCompany.find(params[:company_id])
+ 
+   game.developer.delete(developer)
+   redirect_to game, status: :see_other
+ end
 
   def add_developer
     game = Game.find(params[:id])

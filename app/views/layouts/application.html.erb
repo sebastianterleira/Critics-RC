@@ -13,7 +13,7 @@
   <body>
   <header class="header">
     <div class="container navbar">
-      <a href="/index.html" class="logo">
+      <a href="/games" class="logo">
         <img
           src="/images/logo.png"
           alt="Critics"
@@ -40,11 +40,23 @@
           <%# <%= link_to 'Login', login_path %>
         <%# <% end %> 
       </div>
+      <%# Solo si estoy logueado metodo Logout%>
+      <%# o estoy logueado Sign in && Sign up%>
+      <div><% if user_signed_in? %></div>
+      <%= link_to "Edit profile", edit_user_registration_path %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+      <% else %>
+      <%= link_to "Sign in", new_user_session_path %>
+      <%= link_to "Sign up", new_user_registration_path %>
+      <% end %>
+
 
       <%= image_tag("/images/menu.svg", class: "navbar__menu-icon") %>
       <%= image_tag("/images/close.svg", class: "navbar__menu-icon-close") %>
     </div>
   </header>
+  <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
     <%= yield %>
 
     <footer class="footer">
