@@ -48,8 +48,6 @@
 
  <hr>
   <%= render "critics/form", critic: Critic.new, criticable: @company%>
-
-
   <% @company.received_critics.each do |critic| %>
     <%= render "critics/critic", critic: critic %>
   <% end %>

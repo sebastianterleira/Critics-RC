@@ -41,7 +41,7 @@ class CriticsController < ApplicationController
 
     @critic = Critic.new(critic_params)
     @critic.criticable = criticable
-    # @critic.user = current_employee
+    @critic.user = current_user
 
     if @critic.save
       redirect_to @critic.criticable, notice: "Critic was successfully created."
