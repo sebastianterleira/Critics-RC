@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Env.
+
+You can add [enviroments] (.env.example)
