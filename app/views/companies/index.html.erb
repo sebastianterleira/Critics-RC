@@ -1,0 +1,34 @@
+<section class="section">
+  <section class="container">
+<h1 class="heading">Companies</h1>
+
+<%= link_to "New company", new_company_path, class: "button button--primary fit-content mg-1" %>
+
+
+  <% @companies.each do |company| %>
+  <section class="card py-3">
+  
+    <div class="card_image">
+      <% if company.cover.attached? %>  
+        <div class=img-about><%= image_tag company.cover %></div>
+      <% end %> 
+    </div>
+    <div><%= link_to company.name,company %></div>
+    <% if company.start_date %>
+    <p> <%= company.start_date.strftime("%Y") %>-<%=company.country %></p>
+    <% end %>
+    <div><%= company.description %></div>
+    <p><%= company.games.count %> Games </p>
+    <div class="card_icon">
+    <p><%= link_to image_tag('Edit.png',:alt => 'edit'), edit_company_path(company) %></p>
+    <p><%= link_to image_tag('Delet.png',:alt => 'destroy'), company, data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+       } %></p>
+    </div>
+    </section>
+  <% end %>
+</section>
+</section>
+
+

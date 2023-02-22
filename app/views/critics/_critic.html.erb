@@ -1,0 +1,8 @@
+<div id="<%= dom_id critic %>">
+  <p>By <%= critic.user.username%></p>
+  <p><%= critic.title%></p>
+  <p><%= critic.body %></p>
+  <p><%= time_ago_in_words(critic.created_at) %></p>
+  <%= button_to "Destroy", critic, method: :delete %>
+</div>
+

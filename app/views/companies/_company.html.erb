@@ -1,0 +1,56 @@
+<section class="section">
+  <div class="container">
+
+<div id="<%= dom_id company %>">
+  <% if company.cover.attached? %> 
+    <div>
+      <%= image_tag company.cover, alt: "Image to #{company.name}" %> 
+    </div>
+  <% else %> 
+    <div>
+    <%= image_tag "empty.png", alt: "Empty image", class: "img-company" %> 
+    </div>
+  <% end%>
+
+  <p>
+    <strong>
+    <%= company.name %>
+    </strong>
+  </p>
+  <p>
+    <%= company.start_date.year %> - <%= company.country %>
+  </p>
+
+  <%= link_to "Company Details", company_path(@company) %>
+  <%= link_to "Critics #{company.received_critics.size}" , "#"%>  
+
+  <p>
+    <%# <strong>Description:</strong> %>
+    <%= company.description %>
+  </p>
+</div>
+
+<br/>
+  <h3>Games <%=company.games.count%> </h3>
+
+  <% company.games.each do |game| %>
+  <% if game.cover.attached? %> 
+    <div>
+      <%= image_tag game.cover, alt: "Image to #{game.name}" %> 
+    </div>
+  <% else %> 
+    <div>
+    <%= image_tag "empty.png", alt: "Empty image", class: "img-game" %> 
+    </div>
+  <% end%>
+    <%= render "games/game", game: game %><br/>
+  <% end %>
+
+ <hr>
+  <%= render "critics/form", critic: Critic.new, criticable: @company%>
+  <% @company.received_critics.each do |critic| %>
+    <%= render "critics/critic", critic: critic %>
+  <% end %>
+
+  </div>
+</section>
